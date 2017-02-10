@@ -11,6 +11,6 @@ public class MainPageController {
 
     @RequestMapping("/")
     public String index(){
-        return "registerPage";
+        return "registrationPage";
     }
 }

@@ -26,44 +26,49 @@
     <!-- Tutaj zaczyna się treść maina-->
 
     <div class="row">
-        <form th:action="@{/profile}" method="post" class="col s6 offset-s3">
+        <form th:action="@{/profile}" th:object="${profileForm}"  method="post"  class="col s6 offset-s3">
             <div class="row">
-                <div class="input-field col s12 ">
-                    <label for="name">Nazwa użytkownika</label>
-                    <input id="name" type="text" class="validate"/>
+                <div class="input-field col s6">
+                    <input th:field="${profileForm.nick}"  id="nick" type="text" class="validate"/>
+                    <label for="nick">Nazwa użytkownika</label>
+                </div>
+                <div class="input-field col s6">
+                    <input th:field="${profileForm.email}" id="email" type="email" class="validate"/>
+                    <label for="email">E-mail</label>
                 </div>
             </div>
             <div class="row">
-            <div class="input-field col s12">
-                <input id="password" type="text"/>
-                <label for="password">Hasło</label>
-            </div>
+                <div class="input-field col s12">
+                    <input th:field="${profileForm.password}" id="password" type="password" class="validate"/>
+                    <label for="password">Hasło</label>
+                </div>
             </div>
             <div class="row s12">
-                <button class="btn waves-effect waves-light" type="submit" name="save">
-                    Wyślij
-                    <i class="mdi-content-send right"></i>
-                </button>
+                    <button class="btn waves-effect waves-light" type="submit" name="save">
+                        Wyślij
+                        <i class="mdi-content-send right"></i>
+                    </button>
             </div>
+
         </form>
     </div>
 
 
     <!--Tutaj kończy się treść maina-->
-
-    <div class="fixed-action-btn click-to-toggle" style="top: 100px; left: 24px;">
-        <a class="btn-floating btn-large red">
-            <i class="large material-icons">menu</i>
-        </a>
-        <ul>
-            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-        </ul>
-    </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../static/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(".dropdown-button").dropdown();
+    </script>
+    <script type="text/javascript">
+        $('button').bind('click', function (e) {
+            if (e.currentTarget.name === 'save') {
+                $(e.currentTarget.form).removeAttr('novalidate');
+            } else {
+                $(e.currentTarget.form).attr('novalidate', 'novalidate');
+            }
+        });
+    </script>
 </main>
 <footer class="page-footer">
     <div class="footer-copyright">
