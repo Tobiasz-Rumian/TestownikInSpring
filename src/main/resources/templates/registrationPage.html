@@ -26,21 +26,27 @@
     <!-- Tutaj zaczyna się treść maina-->
 
     <div class="row">
-        <form th:action="@{/profile}" th:object="${profileForm}"  method="post"  class="col s6 offset-s3">
+        <form th:action="@{/registrationPage}" th:object="${profileForm}"  method="post"  class="col s6 offset-s3">
+            <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+            <li th:each="err:${#fields.errors('*')}" th:text="${err}">Błędne dane</li>
+            </ul>
             <div class="row">
                 <div class="input-field col s6">
-                    <input th:field="${profileForm.nick}"  id="nick" type="text" class="validate"/>
+                    <input th:field="*{nick}"  id="nick" type="text" required="required" th:errorclass="invalid" class="validate"/>
                     <label for="nick">Nazwa użytkownika</label>
+                    <div th:errors="*{nick}" class="red-text">Błąd</div>
                 </div>
                 <div class="input-field col s6">
-                    <input th:field="${profileForm.email}" id="email" type="email" class="validate"/>
+                    <input th:field="*{email}" id="email" type="email" required="required" th:errorclass="invalid" class="validate"/>
                     <label for="email">E-mail</label>
+                    <div th:errors="*{email}" class="red-text">Błąd</div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input th:field="${profileForm.password}" id="password" type="password" class="validate"/>
+                    <input th:field="*{password}" id="password" type="password" required="required" th:errorclass="invalid" class="validate"/>
                     <label for="password">Hasło</label>
+                    <div th:errors="*{password}" class="red-text">Błąd</div>
                 </div>
             </div>
             <div class="row s12">
@@ -55,9 +61,9 @@
 
 
     <!--Tutaj kończy się treść maina-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="../static/js/materialize.min.js"></script>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         $(".dropdown-button").dropdown();
     </script>
     <script type="text/javascript">
@@ -68,7 +74,7 @@
                 $(e.currentTarget.form).attr('novalidate', 'novalidate');
             }
         });
-    </script>
+    </script>-->
 </main>
 <footer class="page-footer">
     <div class="footer-copyright">
