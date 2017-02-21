@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<head lang="pl">
+    <title>Twój profil na portalu Testownik</title>
+
+</head>
+
+<main class="light-green darken-2">
+    <ul class="right hide-on-med-and-down" layout:fragment="navButtons">
+        <li><a class="waves-effect waves-light btn">Utwórz nowy testownik</a></li>
+        <li><a class="waves-effect waves-light btn">Twoje statystyki</a></li>
+        <li><a class="waves-effect waves-light btn">Szukaj testownika</a></li>
+    </ul>
+    <div class="row" layout:fragment="content">
+        <div class="col s6 offset-s3 card-panel teal lighten-1 z-depth-4 " th:action="@{/profilePage}" th:object="${profileForm}"  method="get">
+            <span class="grey-text text-darken-3" th:text="$profilePage.nick">nick</span>
+            <span class="grey-text text-darken-3" th:text="$profilePage.email">email</span>
+            <span class="grey-text text-darken-3" th:text="$profilePage.password">password</span>
+        </div>
+        <div style="text-align: center;">
+            <a class="col s2 offset-s5 waves-effect waves-light btn">Zacznij tworzyć testownik!</a>
+        </div>
+    </div>
+
+</main>
+</html>
